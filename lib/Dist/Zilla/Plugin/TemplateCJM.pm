@@ -17,7 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
 
 
 use Moose;
@@ -148,7 +149,7 @@ sub check_Changes
   # Report the results:
   die "ERROR: Can't find any versions in $file" unless $release_date;
 
-  $self->zilla->log("Version $version released $release_date\n$text");
+  $self->log("Version $version released $release_date\n$text");
 
   return ($release_date, $text);
 } # end check_Changes
@@ -167,7 +168,7 @@ sub munge_file
   my $version = $pm_info->version
       or die "ERROR: Can't find version in $pmFile";
 
-  $self->zilla->log("Updating $pmFile: VERSION $version");
+  $self->log("Updating $pmFile: VERSION $version");
 
   $dataRef->{version} = "$version";
   $dataRef->{module}  = $pm_info->name;
@@ -186,6 +187,13 @@ sub munge_file
                  $self->_cur_offset($-[0]);
                  $self->fill_in_string($1, $dataRef, $parmsRef)
                }xgems;
+
+  # And comments at BOL:
+  $content =~ s{( ^\#.+ )}
+               {
+                 $self->_cur_offset($-[0]);
+                 $self->fill_in_string($1, $dataRef, $parmsRef)
+               }xgem;
 
   $file->content($content);
   $self->_cur_content(undef);
@@ -244,9 +252,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 0.01 of
-Dist::Zilla::Plugin::TemplateCJM, released October 11, 2009
-as part of Dist-Zilla-PluginBundle-CJM version 0.01.
+This document describes version 0.02 of
+Dist::Zilla::Plugin::TemplateCJM, released March 7, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.02.
 
 =head1 DESCRIPTION
 
@@ -309,9 +317,10 @@ The Dist::Zilla object that is creating the distribution.
 =item 3.
 
 It finds each F<.pm> file (except those in the F<t> directory, if
-any).  For each file, it processes each POD section through Text::Template.
+any).  For each file, it processes each POD section and each comment
+that starts at the beginning of a line through Text::Template.
 
-Each POD section may use the same variables as step 2, plus the following:
+Each section may use the same variables as step 2, plus the following:
 
 =over
 
@@ -332,6 +341,14 @@ distribution's version, which is available as C<$dist_version>.
 =back
 
 =back
+
+
+=for Pod::Coverage
+check_Changes
+munge_file
+munge_files
+mvp_multivalue_args
+template_error
 
 =head1 ATTRIBUTES
 
@@ -372,10 +389,10 @@ No bugs have been reported.
 
 =head1 AUTHOR
 
-Christopher J. Madsen  S<< C<< <perl AT cjmweb.net> >> >>
+Christopher J. Madsen  C<< <perl AT cjmweb.net> >>
 
 Please report any bugs or feature requests to
-S<< C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >> >>,
+C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >>,
 or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-PluginBundle-CJM>
 
@@ -384,7 +401,7 @@ L<< http://github.com/madsen/dist-zilla-pluginbundle-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Christopher J. Madsen.
+This software is copyright (c) 2010 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

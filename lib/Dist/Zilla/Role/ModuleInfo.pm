@@ -17,7 +17,8 @@ package Dist::Zilla::Role::ModuleInfo;
 # ABSTRACT: Create Module::Build::ModuleInfo object from Dist::Zilla::File
 #---------------------------------------------------------------------
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
 
 use Moose::Role;
 
@@ -62,9 +63,9 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Build::ModuleInfo object from Dis
 
 =head1 VERSION
 
-This document describes version 0.01 of
-Dist::Zilla::Role::ModuleInfo, released October 11, 2009
-as part of Dist-Zilla-PluginBundle-CJM version 0.01.
+This document describes version 0.02 of
+Dist::Zilla::Role::ModuleInfo, released March 7, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.02.
 
 =head1 DESCRIPTION
 
@@ -95,10 +96,10 @@ No bugs have been reported.
 
 =head1 AUTHOR
 
-Christopher J. Madsen  S<< C<< <perl AT cjmweb.net> >> >>
+Christopher J. Madsen  C<< <perl AT cjmweb.net> >>
 
 Please report any bugs or feature requests to
-S<< C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >> >>,
+C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >>,
 or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-PluginBundle-CJM>
 
@@ -107,7 +108,7 @@ L<< http://github.com/madsen/dist-zilla-pluginbundle-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Christopher J. Madsen.
+This software is copyright (c) 2010 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

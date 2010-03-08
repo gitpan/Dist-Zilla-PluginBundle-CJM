@@ -1,5 +1,20 @@
 Revision history for Dist-Zilla-PluginBundle-CJM
 
+0.02   March 7, 2010
+	- Added POD tests
+	- Use the plugin's log method so the plugin name appears in the log
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	  - New plugins
+
+	Dist::Zilla::Plugin::PodLoom
+	  - Define abstract, module, & version only if they
+	    could be determined
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Also process comments that start at beginning of line
+
 0.01   October 11, 2009
 	- Initial release includes:
 	    Dist::Zilla::Plugin::PodLoom

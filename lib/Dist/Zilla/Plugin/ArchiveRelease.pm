@@ -1,10 +1,10 @@
 #---------------------------------------------------------------------
-package Dist::Zilla::Plugin::VersionFromModule;
+package Dist::Zilla::Plugin::ArchiveRelease;
 #
-# Copyright 2009 Christopher J. Madsen
+# Copyright 2010 Christopher J. Madsen
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
-# Created: 23 Sep 2009
+# Created:  6 Mar 2010
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -14,36 +14,46 @@ package Dist::Zilla::Plugin::VersionFromModule;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# ABSTRACT: Get distribution version from its main_module
+# ABSTRACT: Move the release tarball to an archive directory
 #---------------------------------------------------------------------
 
+use 5.008;
 our $VERSION = '0.02';
 # This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
 
+
 use Moose;
-with 'Dist::Zilla::Role::VersionProvider';
-with 'Dist::Zilla::Role::ModuleInfo';
+use Moose::Autobox;
+with 'Dist::Zilla::Role::Releaser';
+
+use autodie ':io';
+use Path::Class qw(file);
+#---------------------------------------------------------------------
 
 
-sub provide_version {
-  my ($self) = @_;
+has directory => (
+  is       => 'ro',
+  isa      => 'Str',
+  default  => 'releases',
+);
 
-  my $main_module = $self->zilla->main_module;
-  my $module = $main_module->name;
+#---------------------------------------------------------------------
+# Main entry point:
 
-  my $pm_info = $self->get_module_info($main_module);
-  my $ver     = $pm_info->version;
+sub release
+{
+  my ($self, $tgz) = @_;
 
-  die "Unable to get version from $module" unless defined $ver;
+  chmod(0444, $tgz);
 
-  $self->log("dist version $ver (from $module)");
+  my $dest = file($self->directory, $tgz->basename);
 
-  "$ver";                       # Need to stringify version object
-} # end provide_version
+  rename $tgz, $dest;
 
-#=====================================================================
-# Package Return Value:
+  $self->log("Moved archive to $dest");
+} # end release
 
+#---------------------------------------------------------------------
 no Moose;
 __PACKAGE__->meta->make_immutable;
 1;
@@ -52,28 +62,37 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::VersionFromModule - Get distribution version from its main_module
+Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive directory
 
 =head1 VERSION
 
 This document describes version 0.02 of
-Dist::Zilla::Plugin::VersionFromModule, released March 7, 2010
+Dist::Zilla::Plugin::ArchiveRelease, released March 7, 2010
 as part of Dist-Zilla-PluginBundle-CJM version 0.02.
 
 =head1 DESCRIPTION
 
-If included, this plugin will set the distribution's version from the
-C<main_module>'s version.  (You should not specify a version in your
-F<dist.ini>.)
+If included, this plugin will cause the F<release> command to mark the
+tarball read-only and move it to an archive directory.  You can
+combine this with another Releaser plugin (like
+L<UploadToCPAN|Dist::Zilla::Plugin::UploadToCPAN>), but it must be the
+last Releaser in your config (or the other Releasers won't be able to
+find the file being released).
 
-=head1 INCOMPATIBILITIES
+=head1 ATTRIBUTES
 
-Since it will always return a version, VersionFromModule should not be
-used with any other VersionProvider plugins.
+=head2 directory
+
+The directory to which the tarball will be moved.
+Defaults to F<releases>.
 
 
 =for Pod::Coverage
-provide_version
+release
+
+=head1 INCOMPATIBILITIES
+
+None reported.
 
 =head1 BUGS AND LIMITATIONS
 

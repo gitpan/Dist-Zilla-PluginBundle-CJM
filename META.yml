@@ -2,14 +2,17 @@
 abstract: "CJM's plugins for Dist::Zilla"
 author:
   - 'Christopher J. Madsen <perl@cjmweb.net>'
-generated_by: 'Dist::Zilla version 1.092680'
+build_requires: {}
+configure_requires:
+  ExtUtils::MakeMaker: 6.11
+generated_by: 'Dist::Zilla version 1.100660'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dist-Zilla-PluginBundle-CJM
 requires:
-  Dist::Zilla: 1.092680
+  Dist::Zilla: 1.100660
   File::Temp: 0
   Hash::Merge::Simple: 0
   Module::Build::ModuleInfo: 0.28
@@ -20,4 +23,4 @@ requires:
   autodie: 0
 resources:
   repository: http://github.com/madsen/dist-zilla-pluginbundle-cjm
-version: 0.01
+version: 0.02
