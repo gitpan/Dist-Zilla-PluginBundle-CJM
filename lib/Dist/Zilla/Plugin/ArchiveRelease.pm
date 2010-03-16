@@ -18,8 +18,8 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '0.02';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
+our $VERSION = '0.03';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
 
 
 use Moose;
@@ -50,7 +50,7 @@ sub release
 
   rename $tgz, $dest;
 
-  $self->log("Moved archive to $dest");
+  $self->log("Moved to $dest");
 } # end release
 
 #---------------------------------------------------------------------
@@ -66,9 +66,9 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 
 =head1 VERSION
 
-This document describes version 0.02 of
-Dist::Zilla::Plugin::ArchiveRelease, released March 7, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.02.
+This document describes version 0.03 of
+Dist::Zilla::Plugin::ArchiveRelease, released March 15, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.03.
 
 =head1 DESCRIPTION
 

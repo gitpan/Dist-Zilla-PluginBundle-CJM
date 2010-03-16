@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '0.02';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
+our $VERSION = '0.03';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
 
 
 use Moose;
@@ -73,7 +73,7 @@ sub munge_file
   my $pm_info = $self->get_module_info($file);
 
   my $version = $pm_info->version
-      or die "ERROR: Can't find version in $pmFile";
+      or $self->log_fatal("ERROR: Can't find version in $pmFile");
 
   # If module version matches dist version, it's current:
   #   (unless that dist has already been released)
@@ -125,9 +125,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 0.02 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released March 7, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.02.
+This document describes version 0.03 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released March 15, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.03.
 
 =head1 DESCRIPTION
 
@@ -164,9 +164,9 @@ munge_files
 
 =head1 DEPENDENCIES
 
-GitVersionCheckCJM requires L<Dist::Zilla> 1.092680 or later.  It also
-requires L<Git>, which is not on CPAN, but is distributed as part of
-C<git>.
+GitVersionCheckCJM requires L<Dist::Zilla> (1.100660 or later).
+It also requires L<Git>, which is not on CPAN, but is distributed as
+part of C<git>.
 
 =head1 INCOMPATIBILITIES
 

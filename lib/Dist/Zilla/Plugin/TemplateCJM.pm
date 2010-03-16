@@ -17,13 +17,18 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '0.02';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.02 (March 7, 2010)
+our $VERSION = '0.03';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
 
 
 use Moose;
 use Moose::Autobox;
-with 'Dist::Zilla::Role::FileMunger';
+use List::Util ();
+
+# We operate as an InstallTool instead of a FileMunger because the
+# prerequisites have not been collected when FileMungers are run.
+with 'Dist::Zilla::Role::InstallTool';
+with 'Dist::Zilla::Role::BeforeRelease';
 with 'Dist::Zilla::Role::ModuleInfo';
 with 'Dist::Zilla::Role::TextTemplate';
 
@@ -55,7 +60,7 @@ has template_files => (
 #---------------------------------------------------------------------
 # Main entry point:
 
-sub munge_files {
+sub setup_installer {
   my ($self) = @_;
 
   my $files = $self->zilla->files;
@@ -73,8 +78,9 @@ sub munge_files {
      date    => $release_date,
      dist    => $self->zilla->name,
      meta    => $self->zilla->distmeta,
+     t       => \$self,
      version => $self->zilla->version,
-     zilla   => $self->zilla,
+     zilla   => \$self->zilla,
   );
 
   $data{dist_version} = $data{version};
@@ -91,7 +97,7 @@ sub munge_files {
   my $any = $self->template_files->any;
 
   foreach my $file ($files->grep(sub { $_->name eq $any })->flatten) {
-    printf "Processing %s\n", $file->name;
+    $self->log('Processing ' . $file->name);
     $self->_cur_filename($file->name);
     $self->_cur_offset(0);
     $file->content($self->fill_in_string($file->content, \%data, \%parms));
@@ -103,7 +109,28 @@ sub munge_files {
   foreach my $file ($files->flatten) {
     $self->munge_file($file, \%data, \%parms);
   } # end foreach $file
-} # end munge_files
+} # end setup_installer
+
+#---------------------------------------------------------------------
+# Make sure we have a release date:
+
+has _release_date => (
+  is       => 'rw',
+  isa      => 'Str',
+  init_arg => undef,
+);
+
+sub before_release
+{
+  my $self = shift;
+
+  my $release_date = $self->_release_date;
+
+  $self->log_fatal(["Invalid release date in %s: %s",
+                    $self->changelog, $release_date ])
+      if not $release_date or $release_date =~ /^[[:upper:]]+$/;
+
+} # end before_release
 
 #---------------------------------------------------------------------
 # Make sure that we've listed this release in Changes:
@@ -151,6 +178,8 @@ sub check_Changes
 
   $self->log("Version $version released $release_date\n$text");
 
+  $self->_release_date($release_date); # Remember it for before_release
+
   return ($release_date, $text);
 } # end check_Changes
 
@@ -172,7 +201,7 @@ sub munge_file
 
   $dataRef->{version} = "$version";
   $dataRef->{module}  = $pm_info->name;
-  $dataRef->{pm_info} = $pm_info;
+  $dataRef->{pm_info} = \$pm_info;
 
   $parmsRef->{FILENAME} = $pmFile;
 
@@ -200,6 +229,54 @@ sub munge_file
 
   return;
 } # end munge_file
+#---------------------------------------------------------------------
+
+
+sub dependency_link
+{
+  my ($self, $module) = @_;
+
+  my $meta = $self->zilla->distmeta;
+  my $ver;
+
+  for my $key (qw(requires recommends)) {
+    last if defined($ver = $meta->{$key}{$module});
+  } # end for each $key
+
+  $self->log("WARNING: Can't find $module in prerequisites")
+      unless defined $ver;
+
+  if ($ver) { "L<$module> ($ver or later)" }
+  else      { "L<$module>" }
+} # end dependency_link
+#---------------------------------------------------------------------
+
+
+sub dependency_list
+{
+  my ($self) = @_;
+
+  my $requires = $self->zilla->distmeta->{requires};
+
+  my @modules = sort grep { $_ ne 'perl' } keys %$requires;
+
+  unshift @modules, 'perl' if $requires->{perl};
+
+  my $width = List::Util::max(map { length $_ } @modules) + 1;
+
+  my $text = sprintf("  %-${width}s %s\n  ", 'Package', 'Minimum Version');
+  $text .= ('-' x $width) . " ---------------\n";
+
+  ++$width;
+
+  foreach my $req (@modules) {
+    $text .= sprintf("  %-${width}s %s\n", $req, $requires->{$req} || '');
+  }
+
+  $text =~ s/\s+\z//;           # Remove final newline
+
+  $text;
+} # end dependency_list
 
 #---------------------------------------------------------------------
 # Report a template error and die:
@@ -252,9 +329,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 0.02 of
-Dist::Zilla::Plugin::TemplateCJM, released March 7, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.02.
+This document describes version 0.03 of
+Dist::Zilla::Plugin::TemplateCJM, released March 15, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.03.
 
 =head1 DESCRIPTION
 
@@ -304,6 +381,10 @@ The name of the distribution.
 
 The hash of metadata that will be stored in F<META.yml>.
 
+=item C<$t>
+
+The TemplateCJM object that is processing the template.
+
 =item C<$version>
 
 The distribution's version number.  (Also available as C<$dist_version>.)
@@ -342,12 +423,17 @@ distribution's version, which is available as C<$dist_version>.
 
 =back
 
+It also peforms a L<BeforeRelease|Dist::Zilla::Role::BeforeRelease>
+check to ensure that the relase date in the changelog is not a single
+uppercase word.  (I set the date to NOT until I'm ready to release.)
+
 
 =for Pod::Coverage
+before_release
 check_Changes
 munge_file
-munge_files
 mvp_multivalue_args
+setup_installer
 template_error
 
 =head1 ATTRIBUTES
@@ -372,9 +458,45 @@ The C<file> attribute may be listed any number of times.  If you don't
 list any C<file>s, it defaults to F<README>.  If you do specify any
 C<file>s, then F<README> is not processed unless explicitly specified.
 
+=head1 METHODS
+
+=head2 dependency_link
+
+  $t->dependency_link('Foo::Bar')
+
+A template can use this method to add a link to the documentation of a
+required module.  It returns either
+
+  L<Foo::Bar> (VERSION or later)
+
+or
+
+  L<Foo::Bar>
+
+depending on whether VERSION is non-zero.  (It determines VERSION by
+checking C<requires> and C<recommends> in your prerequisites.)
+
+
+=head2 dependency_list
+
+  $t->dependency_list
+
+A template can use this method to add a list of required modules.
+It returns a string like:
+
+  Package                Minimum Version
+  ---------------------- ---------------
+  perl                    5.8.0
+  List::Util
+  Moose                   0.90
+
+If C<perl> is one of he dependencies, it is listed first.  All other
+dependencies are listed in ASCIIbetical order.  The string will NOT
+end with a newline.
+
 =head1 DEPENDENCIES
 
-TemplateCJM requires L<Dist::Zilla> 1.092680 or later and
+TemplateCJM requires L<Dist::Zilla> (1.100660 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

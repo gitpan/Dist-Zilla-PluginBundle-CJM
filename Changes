@@ -1,5 +1,22 @@
 Revision history for Dist-Zilla-PluginBundle-CJM
 
+0.03   March 15, 2010
+	- Includes a new version of Template_strict.patch that
+	  supports scalar references properly
+
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - Shortened log message
+
+	Dist::Zilla::Plugin::ModuleBuild::Custom
+	  - New plugin
+
+	Dist::Zilla::Plugin::TemplateCJM
+	  - Is now an InstallTool instead of a FileMunger, because
+	    prerequisites have not been calculated at FileMunger time
+	  - Added the dependency_link & dependency_list methods
+	  - Added a BeforeRelease check to ensure the release date is
+	    not just an uppercase word
+
 0.02   March 7, 2010
 	- Added POD tests
 	- Use the plugin's log method so the plugin name appears in the log
