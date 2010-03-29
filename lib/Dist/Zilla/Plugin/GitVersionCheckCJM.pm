@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.03';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
 
 
 use Moose;
@@ -126,8 +126,8 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 =head1 VERSION
 
 This document describes version 0.03 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released March 15, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.03.
+Dist::Zilla::Plugin::GitVersionCheckCJM, released March 29, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.04.
 
 =head1 DESCRIPTION
 
@@ -164,7 +164,7 @@ munge_files
 
 =head1 DEPENDENCIES
 
-GitVersionCheckCJM requires L<Dist::Zilla> (1.100660 or later).
+GitVersionCheckCJM requires L<Dist::Zilla> (2 or later).
 It also requires L<Git>, which is not on CPAN, but is distributed as
 part of C<git>.
 

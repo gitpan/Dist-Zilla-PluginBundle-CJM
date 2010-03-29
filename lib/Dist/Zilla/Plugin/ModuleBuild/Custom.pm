@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::ModuleBuild::Custom;
 # ABSTRACT: Allow a dist to have a custom Build.PL
 #---------------------------------------------------------------------
 
-our $VERSION = '0.03';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
+our $VERSION = '0.04';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
 
 
 use Moose;
@@ -146,9 +146,9 @@ Dist::Zilla::Plugin::ModuleBuild::Custom - Allow a dist to have a custom Build.P
 
 =head1 VERSION
 
-This document describes version 0.03 of
-Dist::Zilla::Plugin::ModuleBuild::Custom, released March 15, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.03.
+This document describes version 0.04 of
+Dist::Zilla::Plugin::ModuleBuild::Custom, released March 29, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.04.
 
 =head1 SYNOPSIS
 
@@ -179,7 +179,8 @@ L<ModuleBuild|Dist::Zilla::Plugin::ModuleBuild> plugins.
 
 It is a subclass of the L<ModuleBuild plugin|Dist::Zilla::Plugin::ModuleBuild>,
 but it does not write a F<Build.PL> for you.  Instead, you write your
-own F<Build.PL>, which may do anything L<Module::Build> is capable of.
+own F<Build.PL>, which may do anything L<Module::Build> is capable of
+(except generate a compatibility F<Makefile.PL>).
 
 This plugin will process F<Build.PL> as a template (using
 L<Text::Template>), which allows you to add data from Dist::Zilla to
@@ -243,7 +244,7 @@ distribution's prerequisites.
 
 =head1 DEPENDENCIES
 
-ModuleBuild::Custom requires L<Dist::Zilla> (1.100660 or later) and
+ModuleBuild::Custom requires L<Dist::Zilla> (2 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

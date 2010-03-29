@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::TemplateCJM;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.03';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.03 (March 15, 2010)
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
 
 
 use Moose;
@@ -330,8 +330,8 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 =head1 VERSION
 
 This document describes version 0.03 of
-Dist::Zilla::Plugin::TemplateCJM, released March 15, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.03.
+Dist::Zilla::Plugin::TemplateCJM, released March 29, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.04.
 
 =head1 DESCRIPTION
 
@@ -496,7 +496,7 @@ end with a newline.
 
 =head1 DEPENDENCIES
 
-TemplateCJM requires L<Dist::Zilla> (1.100660 or later) and
+TemplateCJM requires L<Dist::Zilla> (2 or later) and
 L<Text::Template>.  I also recommend applying F<Template_strict.patch>
 to Text::Template.  This will add support for the STRICT option, which
 will help catch errors in your templates.

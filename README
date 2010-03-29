@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.03, released March 15, 2010
+Dist-Zilla-PluginBundle-CJM version 0.04, released March 29, 2010
 
 
 Dist-Zilla-PluginBundle-CJM is a collection of plugins I've written
@@ -27,7 +27,7 @@ DEPENDENCIES
 
   Package                    Minimum Version
   -------------------------- ---------------
-  Dist::Zilla                 1.100660
+  Dist::Zilla                 2
   File::Temp                  
   Hash::Merge::Simple         
   List::Util                  
@@ -42,24 +42,16 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.03 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.04 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Includes a new version of Template_strict.patch that
-	  supports scalar references properly
+	- Now requires Dist::Zilla 2
+	- Added compile tests
 
 	Dist::Zilla::Plugin::ArchiveRelease
-	  - Shortened log message
-
-	Dist::Zilla::Plugin::ModuleBuild::Custom
-	  - New plugin
-
-	Dist::Zilla::Plugin::TemplateCJM
-	  - Is now an InstallTool instead of a FileMunger, because
-	    prerequisites have not been calculated at FileMunger time
-	  - Added the dependency_link & dependency_list methods
-	  - Added a BeforeRelease check to ensure the release date is
-	    not just an uppercase word
+	  - Added a BeforeRelease check to ensure the directory exists
+	    (creating it if necessary) and this release hasn't already
+	    been archived
 
 
 
