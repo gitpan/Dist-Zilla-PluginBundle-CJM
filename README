@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.04, released March 29, 2010
+Dist-Zilla-PluginBundle-CJM version 0.05, released March 30, 2010
 
 
 Dist-Zilla-PluginBundle-CJM is a collection of plugins I've written
@@ -42,16 +42,11 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.04 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.05 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Now requires Dist::Zilla 2
-	- Added compile tests
-
-	Dist::Zilla::Plugin::ArchiveRelease
-	  - Added a BeforeRelease check to ensure the directory exists
-	    (creating it if necessary) and this release hasn't already
-	    been archived
+	- All plugins now have a SYNOPSIS
+	- Revised compile tests
 
 
 

@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::PodLoom;
 # ABSTRACT: Process module documentation through Pod::Loom
 #---------------------------------------------------------------------
 
-our $VERSION = '0.02';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
+our $VERSION = '0.05';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
 
 
 use Moose;
@@ -125,9 +125,17 @@ Dist::Zilla::Plugin::PodLoom - Process module documentation through Pod::Loom
 
 =head1 VERSION
 
-This document describes version 0.02 of
-Dist::Zilla::Plugin::PodLoom, released March 29, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.04.
+This document describes version 0.05 of
+Dist::Zilla::Plugin::PodLoom, released March 30, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+  [PodLoom]
+  template = Default      ; this is the default
+  data = loom.pl          ; there is no default for this
 
 =head1 DESCRIPTION
 

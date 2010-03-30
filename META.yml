@@ -5,7 +5,7 @@ author:
 build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.31
-generated_by: 'Dist::Zilla version 2.100870'
+generated_by: 'Dist::Zilla version (undef)'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -25,4 +25,4 @@ requires:
   autodie: 0
 resources:
   repository: http://github.com/madsen/dist-zilla-pluginbundle-cjm
-version: 0.04
+version: 0.05

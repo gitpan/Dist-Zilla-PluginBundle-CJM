@@ -1,44 +1,18 @@
-#!perl
+use Test::More tests => 8;
 
-use strict;
-use warnings;
+use_ok('Dist::Zilla::PluginBundle::CJM');
 
-use Test::More;
-use File::Find;
-use File::Temp qw{ tempdir };
+diag("Testing Dist::Zilla::PluginBundle::CJM $Dist::Zilla::PluginBundle::CJM::VERSION");
 
-my @modules;
-find(
-  sub {
-    return if $File::Find::name !~ /\.pm\z/;
-    my $found = $File::Find::name;
-    $found =~ s{^lib/}{};
-    $found =~ s{[/\\]}{::}g;
-    $found =~ s/\.pm$//;
-    # nothing to skip
-    push @modules, $found;
-  },
-  'lib',
-);
+use_ok('Dist::Zilla::Plugin::ArchiveRelease');
+use_ok('Dist::Zilla::Plugin::ModuleBuild::Custom');
+use_ok('Dist::Zilla::Plugin::PodLoom');
+use_ok('Dist::Zilla::Plugin::TemplateCJM');
+use_ok('Dist::Zilla::Plugin::VersionFromModule');
+use_ok('Dist::Zilla::Role::ModuleInfo');
 
-my @scripts = glob "bin/*";
+SKIP: {
+  skip 'Git not installed', 1 unless eval "use Git; 1";
 
-plan tests => scalar(@modules) + scalar(@scripts);
-
-{
-    # fake home for cpan-testers
-    # no fake requested ## local $ENV{HOME} = tempdir( CLEANUP => 1 );
-
-    is( qx{ $^X -Ilib -M$_ -e "print '$_ ok'" }, "$_ ok", "$_ loaded ok" )
-        for sort @modules;
-
-    SKIP: {
-        eval "use Test::Script; 1;";
-        skip "Test::Script needed to test script compilation", scalar(@scripts) if $@;
-        foreach my $file ( @scripts ) {
-            my $script = $file;
-            $script =~ s!.*/!!;
-            script_compiles_ok( $file, "$script script compiles" );
-        }
-    }
+  use_ok('Dist::Zilla::Plugin::GitVersionCheckCJM');
 }

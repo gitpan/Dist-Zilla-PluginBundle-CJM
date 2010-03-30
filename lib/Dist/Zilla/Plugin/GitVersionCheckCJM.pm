@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '0.03';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
+our $VERSION = '0.05';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
 
 
 use Moose;
@@ -125,9 +125,15 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 0.03 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released March 29, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.04.
+This document describes version 0.05 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released March 30, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+  [GitVersionCheckCJM]
 
 =head1 DESCRIPTION
 

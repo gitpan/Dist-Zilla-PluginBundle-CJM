@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '0.04';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
+our $VERSION = '0.05';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
 
 use Moose;
 #use Moose::Autobox;
@@ -41,9 +41,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 0.04 of
-Dist::Zilla::PluginBundle::CJM, released March 29, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.04.
+This document describes version 0.05 of
+Dist::Zilla::PluginBundle::CJM, released March 30, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.05.
 
 =head1 DESCRIPTION
 

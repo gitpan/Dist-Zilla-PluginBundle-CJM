@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '0.03';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.04 (March 29, 2010)
+our $VERSION = '0.05';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
 
 
 use Moose;
@@ -329,9 +329,18 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 0.03 of
-Dist::Zilla::Plugin::TemplateCJM, released March 29, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.04.
+This document describes version 0.05 of
+Dist::Zilla::Plugin::TemplateCJM, released March 30, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+  [TemplateCJM]
+  changelog = Changes      ; this is the default
+  changes   = 1            ; this is the default
+  file      = README       ; this is the default
 
 =head1 DESCRIPTION
 
