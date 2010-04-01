@@ -18,7 +18,7 @@ package Dist::Zilla::Role::ModuleInfo;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.02';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.06 (April 1, 2010)
 
 use Moose::Role;
 
@@ -64,8 +64,8 @@ Dist::Zilla::Role::ModuleInfo - Create Module::Build::ModuleInfo object from Dis
 =head1 VERSION
 
 This document describes version 0.02 of
-Dist::Zilla::Role::ModuleInfo, released March 30, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+Dist::Zilla::Role::ModuleInfo, released April 1, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.06.
 
 =head1 DESCRIPTION
 

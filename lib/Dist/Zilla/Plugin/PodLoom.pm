@@ -18,7 +18,7 @@ package Dist::Zilla::Plugin::PodLoom;
 #---------------------------------------------------------------------
 
 our $VERSION = '0.05';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.06 (April 1, 2010)
 
 
 use Moose;
@@ -126,8 +126,8 @@ Dist::Zilla::Plugin::PodLoom - Process module documentation through Pod::Loom
 =head1 VERSION
 
 This document describes version 0.05 of
-Dist::Zilla::Plugin::PodLoom, released March 30, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+Dist::Zilla::Plugin::PodLoom, released April 1, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.06.
 
 =head1 SYNOPSIS
 

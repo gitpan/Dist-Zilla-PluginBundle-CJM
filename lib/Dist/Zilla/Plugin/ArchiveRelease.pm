@@ -18,14 +18,15 @@ package Dist::Zilla::Plugin::ArchiveRelease;
 #---------------------------------------------------------------------
 
 use 5.008;
-our $VERSION = '0.05';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
+our $VERSION = '0.06';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.06 (April 1, 2010)
 
 
 use Moose;
 use Moose::Autobox;
 with 'Dist::Zilla::Role::BeforeRelease';
 with 'Dist::Zilla::Role::Releaser';
+with 'Dist::Zilla::Role::FilePruner';
 
 use Path::Class ();
 #---------------------------------------------------------------------
@@ -44,6 +45,26 @@ sub directory
 
   Path::Class::dir($self->_directory)->absolute($self->zilla->root);
 } # end get_directory
+
+#---------------------------------------------------------------------
+# Don't distribute previously archived releases:
+
+sub prune_files
+{
+  my $self = shift;
+
+  my $root = $self->zilla->root;
+  my $dir  = $self->directory;
+
+  if ($root->subsumes($dir)) {
+    $dir      = $dir->relative($root);
+    my $files = $self->zilla->files;
+
+    @$files = grep { not $dir->subsumes($_->name) } @$files;
+  } # end if archive directory is inside root
+
+  return;
+} # end prune_files
 
 #---------------------------------------------------------------------
 sub before_release
@@ -98,9 +119,9 @@ Dist::Zilla::Plugin::ArchiveRelease - Move the release tarball to an archive dir
 
 =head1 VERSION
 
-This document describes version 0.05 of
-Dist::Zilla::Plugin::ArchiveRelease, released March 30, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+This document describes version 0.06 of
+Dist::Zilla::Plugin::ArchiveRelease, released April 1, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.06.
 
 =head1 SYNOPSIS
 
@@ -131,6 +152,7 @@ BeforeRelease phase.
 =for Pod::Coverage
 before_release
 release
+prune_files
 
 =head1 INCOMPATIBILITIES
 

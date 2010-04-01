@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.05, released March 30, 2010
+Dist-Zilla-PluginBundle-CJM version 0.06, released April 1, 2010
 
 
 Dist-Zilla-PluginBundle-CJM is a collection of plugins I've written
@@ -42,11 +42,15 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.05 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.06 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- All plugins now have a SYNOPSIS
-	- Revised compile tests
+	Dist::Zilla::Plugin::ArchiveRelease
+	  - add FilePruner for archive directory (Michael Schout)
+
+	Dist::Zilla::Plugin::GitVersionCheckCJM
+	Dist::Zilla::Plugin::TemplateCJM
+	  - are now FileFinderUsers
 
 
 

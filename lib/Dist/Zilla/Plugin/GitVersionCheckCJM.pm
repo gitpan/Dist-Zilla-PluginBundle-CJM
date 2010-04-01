@@ -17,14 +17,20 @@ package Dist::Zilla::Plugin::GitVersionCheckCJM;
 # ABSTRACT: Ensure version numbers are up-to-date
 #---------------------------------------------------------------------
 
-our $VERSION = '0.05';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
+our $VERSION = '0.06';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.06 (April 1, 2010)
 
 
 use Moose;
 use Moose::Autobox;
-with 'Dist::Zilla::Role::FileMunger';
-with 'Dist::Zilla::Role::ModuleInfo';
+with(
+  'Dist::Zilla::Role::FileMunger',
+  'Dist::Zilla::Role::ModuleInfo',
+  'Dist::Zilla::Role::FileFinderUser' => {
+    default_finders => [ ':InstallModules' ],
+  },
+);
+
 
 use Git ();
 
@@ -48,9 +54,7 @@ sub munge_files {
   );
 
   # Get the list of modules:
-  my $files = $self->zilla->files->grep(
-    sub { $_->name =~ /\.pm$/ and $_->name !~ m{^t/};}
-  );
+  my $files = $self->found_files;
 
   # Check each module:
   my $errors = 0;
@@ -125,9 +129,9 @@ Dist::Zilla::Plugin::GitVersionCheckCJM - Ensure version numbers are up-to-date
 
 =head1 VERSION
 
-This document describes version 0.05 of
-Dist::Zilla::Plugin::GitVersionCheckCJM, released March 30, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+This document describes version 0.06 of
+Dist::Zilla::Plugin::GitVersionCheckCJM, released April 1, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.06.
 
 =head1 SYNOPSIS
 
@@ -167,6 +171,14 @@ checking all modules, it aborts the build if any module had an error.
 =for Pod::Coverage
 munge_file
 munge_files
+
+=head1 ATTRIBUTES
+
+=head2 finder
+
+This FileFinder provides the list of modules that will be checked.
+The default is C<:InstallModules>.  The C<finder> attribute may be
+listed any number of times.
 
 =head1 DEPENDENCIES
 

@@ -17,8 +17,8 @@ package Dist::Zilla::Plugin::TemplateCJM;
 # ABSTRACT: Process templates, including version numbers & changes
 #---------------------------------------------------------------------
 
-our $VERSION = '0.05';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.05 (March 30, 2010)
+our $VERSION = '0.06';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.06 (April 1, 2010)
 
 
 use Moose;
@@ -27,10 +27,15 @@ use List::Util ();
 
 # We operate as an InstallTool instead of a FileMunger because the
 # prerequisites have not been collected when FileMungers are run.
-with 'Dist::Zilla::Role::InstallTool';
-with 'Dist::Zilla::Role::BeforeRelease';
-with 'Dist::Zilla::Role::ModuleInfo';
-with 'Dist::Zilla::Role::TextTemplate';
+with(
+  'Dist::Zilla::Role::InstallTool',
+  'Dist::Zilla::Role::BeforeRelease',
+  'Dist::Zilla::Role::ModuleInfo',
+  'Dist::Zilla::Role::TextTemplate',
+  'Dist::Zilla::Role::FileFinderUser' => {
+    default_finders => [ ':InstallModules' ],
+  },
+);
 
 sub mvp_multivalue_args { qw(file) }
 
@@ -56,6 +61,7 @@ has template_files => (
   init_arg => 'file',
   default  => sub { [ 'README' ] },
 );
+
 
 #---------------------------------------------------------------------
 # Main entry point:
@@ -104,7 +110,7 @@ sub setup_installer {
   } # end foreach $file
 
   # Munge POD sections in modules:
-  $files = $files->grep(sub { $_->name =~ /\.pm$/ and $_->name !~ m{^t/};});
+  $files = $self->found_files;
 
   foreach my $file ($files->flatten) {
     $self->munge_file($file, \%data, \%parms);
@@ -329,9 +335,9 @@ Dist::Zilla::Plugin::TemplateCJM - Process templates, including version numbers 
 
 =head1 VERSION
 
-This document describes version 0.05 of
-Dist::Zilla::Plugin::TemplateCJM, released March 30, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.05.
+This document describes version 0.06 of
+Dist::Zilla::Plugin::TemplateCJM, released April 1, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.06.
 
 =head1 SYNOPSIS
 
@@ -406,9 +412,9 @@ The Dist::Zilla object that is creating the distribution.
 
 =item 3.
 
-It finds each F<.pm> file (except those in the F<t> directory, if
-any).  For each file, it processes each POD section and each comment
-that starts at the beginning of a line through Text::Template.
+For each module to be installed, it processes each POD section and
+each comment that starts at the beginning of a line through
+Text::Template.
 
 Each section may use the same variables as step 2, plus the following:
 
@@ -466,6 +472,13 @@ This is the name of a file to process with Text::Template in step 2.
 The C<file> attribute may be listed any number of times.  If you don't
 list any C<file>s, it defaults to F<README>.  If you do specify any
 C<file>s, then F<README> is not processed unless explicitly specified.
+
+
+=head2 finder
+
+This FileFinder provides the list of files that are processed in step
+3.  The default is C<:InstallModules>.  The C<finder> attribute may be
+listed any number of times.
 
 =head1 METHODS
 
