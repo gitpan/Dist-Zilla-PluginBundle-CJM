@@ -11,7 +11,9 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dist-Zilla-PluginBundle-CJM
-no_index: {}
+no_index:
+  directory:
+    - corpus
 requires:
   Dist::Zilla: 2
   File::Temp: 0
@@ -26,4 +28,4 @@ requires:
   autodie: 0
 resources:
   repository: http://github.com/madsen/dist-zilla-pluginbundle-cjm
-version: 0.06
+version: 0.07
