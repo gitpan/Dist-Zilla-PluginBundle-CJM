@@ -1,20 +1,21 @@
-Dist-Zilla-PluginBundle-CJM version 0.07, released April 1, 2010
+Dist-Zilla-PluginBundle-CJM version 0.08, released April 14, 2010
 
 
-Dist-Zilla-PluginBundle-CJM is a collection of plugins I've written
-for Dist::Zilla.  There isn't actually a @CJM bundle yet, because I'm
-still working out how I want to use Dist::Zilla.
+Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
+building CPAN modules with Dist::Zilla.  This distribution used to
+include a collection of plugins I've written, but those are now
+distributed separately (in Dist-Zilla-Plugins-CJM), so that you don't
+have to install every single plugin I use and all their prerequisites.
 
-I've written some other plugins that are distributed separately,
-because they had different prerequisites.  The ones collected here
-have fairly simple prerequisites, and I didn't want to have to make
-separate distributions for all of them.
+If you previously installed this bundle to get one of the plugins, you
+should uninstall this bundle, and install Dist-Zilla-Plugins-CJM instead.
+Sorry for any confusion this causes.
 
 
 
 INSTALLATION
 
-To install these modules, run the following commands:
+To install this module, run the following commands:
 
     perl Makefile.PL
     make
@@ -25,27 +26,53 @@ To install these modules, run the following commands:
 
 DEPENDENCIES
 
-  Package                    Minimum Version
-  -------------------------- ---------------
-  Dist::Zilla                 2
-  File::Temp                  
-  Hash::Merge::Simple         
-  List::Util                  
-  Module::Build::ModuleInfo   0.28
-  Moose                       0.65
-  Moose::Autobox              0.09
-  Path::Class                 
-  Pod::Loom                   
-  Scalar::Util                
-  autodie
+  Package                                  Minimum Version
+  ---------------------------------------- ---------------
+  Dist::Zilla                               2
+  Dist::Zilla::Plugin::ArchiveRelease       0.08
+  Dist::Zilla::Plugin::ExtraTests           
+  Dist::Zilla::Plugin::GatherDir            
+  Dist::Zilla::Plugin::GitVersionCheckCJM   0.08
+  Dist::Zilla::Plugin::License              
+  Dist::Zilla::Plugin::MakeMaker            
+  Dist::Zilla::Plugin::ManifestSkip         
+  Dist::Zilla::Plugin::MatchManifest        0.03
+  Dist::Zilla::Plugin::MetaConfig           
+  Dist::Zilla::Plugin::MetaYAML             
+  Dist::Zilla::Plugin::PodCoverageTests     
+  Dist::Zilla::Plugin::PodLoom              0.08
+  Dist::Zilla::Plugin::PodSyntaxTests       
+  Dist::Zilla::Plugin::PruneCruft           
+  Dist::Zilla::Plugin::Repository           
+  Dist::Zilla::Plugin::TemplateCJM          0.08
+  Dist::Zilla::Plugin::TestRelease          
+  Dist::Zilla::Plugin::UploadToCPAN         
+  Dist::Zilla::Plugin::VersionFromModule    0.08
+  Dist::Zilla::PluginBundle::Git            1.100900
+  Dist::Zilla::Role::PluginBundle::Easy     
+  Git                                       
+  Moose                                     0.65
+  Moose::Autobox                            0.09
 
 
 
 CHANGES
-    Here's what's new in version 0.07 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.08 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- added tests
+	@CJM is now a working PluginBundle.
+	The plugins are now distributed separately from @CJM.
+
+	If you previously installed this bundle to get one of the
+	plugins, you should uninstall this bundle, and install
+	Dist-Zilla-Plugins-CJM instead.  Sorry for any confusion this
+	causes.
+
+	Dist::Zilla::Plugin::PodLoom
+	  - distributed in Dist-Zilla-Plugin-PodLoom
+
+	All other plugins and Role::ModuleInfo
+	  - distributed in Dist-Zilla-Plugins-CJM
 
 
 

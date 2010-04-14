@@ -17,17 +17,67 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '0.07';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.07 (April 1, 2010)
+our $VERSION = '0.08';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.08 (April 14, 2010)
 
 use Moose;
-#use Moose::Autobox;
-with 'Dist::Zilla::Role::PluginBundle';
+use Moose::Autobox;
+with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 
-sub bundle_config {
-  die "Sorry, Dist::Zilla::PluginBundle::CJM is not implemented yet\n";
-}
+sub configure
+{
+  my $self = shift;
+
+  my $arg = $self->payload;
+
+  $self->add_plugins('VersionFromModule')
+      unless $arg->{manual_version};
+
+  $self->add_plugins(
+    qw(
+      GatherDir
+      PruneCruft
+      ManifestSkip
+      MetaYAML
+      License
+      PodSyntaxTests
+      PodCoverageTests
+      ExtraTests
+    ),
+    [PodLoom => {
+      data => 'tools/loom.pl',
+      $self->config_slice({
+        pod_template => 'template',
+      })->flatten,
+    } ],
+    # either MakeMaker or ModuleBuild:
+    [ ($arg->{builder} || 'MakeMaker') =>
+      scalar $self->config_slice(qw( eumm_version mb_version ))
+    ],
+    qw(
+      MetaConfig
+      MatchManifest
+      GitVersionCheckCJM
+      TemplateCJM
+    ),
+    [ Repository => { git_remote => 'github' } ],
+  );
+
+  $self->add_bundle(Git => {
+    allow_dirty => 'Changes',
+    commit_msg  => 'Updated Changes for %{MMMM d, yyyy}d release of %v',
+    tag_format  => '%v',
+    tag_message => 'Tagged %N %v',
+    push_to     => 'github',
+  });
+
+  $self->add_plugins(
+    'TestRelease',
+    'UploadToCPAN',
+    [ ArchiveRelease => { directory => 'cjm_releases' } ],
+  );
+} # end configure
 
 no Moose;
 __PACKAGE__->meta->make_immutable;
@@ -41,16 +91,54 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 0.07 of
-Dist::Zilla::PluginBundle::CJM, released April 1, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.07.
+This document describes version 0.08 of
+Dist::Zilla::PluginBundle::CJM, released April 14, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.08.
 
 =head1 DESCRIPTION
 
-This is a placeholder while I figure out how to best use Dist::Zilla.
+This is the plugin bundle that CJM uses. It is equivalent to:
+
+  [VersionFromModule]
+
+  [GatherDir]
+  [PruneCruft]
+  [ManifestSkip]
+  [MetaYAML]
+  [License]
+  [PodSyntaxTests]
+  [PodCoverageTests]
+  [ExtraTests]
+  [PodLoom]
+  data = tools/loom.pl
+  [MakeMaker]
+  [MetaConfig]
+  [MatchManifest]
+  [GitVersionCheckCJM]
+  [TemplateCJM]
+
+  [Repository]
+  git_remote = github
+
+  [@Git]
+  allow_dirty = Changes
+  commit_msg  = Updated Changes for %{MMMM d, yyyy}d release of %v
+  tag_format  = %v
+  tag_message = Tagged %N %v
+  push_to     = github
+
+  [TestRelease]
+  [UploadToCPAN]
+  [ArchiveRelease]
+  directory = cjm_releases
+
+If the C<manual_version> argument is given to the bundle,
+VersionFromModule is omitted.  If the C<builder> argument is given, it
+is used instead of MakeMaker.  If the C<pod_template> argument is
+given, it is passed to PodLoom as its C<template>.
 
 =for Pod::Coverage
-bundle_config
+configure
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
@@ -66,10 +154,10 @@ No bugs have been reported.
 
 =head1 AUTHOR
 
-Christopher J. Madsen  C<< <perl AT cjmweb.net> >>
+Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
 Please report any bugs or feature requests to
-C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >>,
+S<C<< <bug-Dist-Zilla-PluginBundle-CJM AT rt.cpan.org> >>>,
 or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-PluginBundle-CJM>
 
