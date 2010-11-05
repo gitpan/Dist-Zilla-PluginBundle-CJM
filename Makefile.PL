@@ -9,52 +9,63 @@ use ExtUtils::MakeMaker 6.31;
 
 
 my %WriteMakefileArgs = (
-                       'test' => {
-                                   'TESTS' => 't/*.t'
-                                 },
-                       'NAME' => 'Dist::Zilla::PluginBundle::CJM',
-                       'DISTNAME' => 'Dist-Zilla-PluginBundle-CJM',
-                       'CONFIGURE_REQUIRES' => {
-                                                 'ExtUtils::MakeMaker' => '6.31'
-                                               },
-                       'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
-                       'BUILD_REQUIRES' => {},
-                       'ABSTRACT' => 'Build a distribution like CJM',
-                       'EXE_FILES' => [],
-                       'VERSION' => '0.08',
-                       'PREREQ_PM' => {
-                                        'Dist::Zilla::Plugin::MetaYAML' => '0',
-                                        'Dist::Zilla::Role::PluginBundle::Easy' => '0',
-                                        'Dist::Zilla::Plugin::MatchManifest' => '0.03',
-                                        'Dist::Zilla::Plugin::MetaConfig' => '0',
-                                        'Dist::Zilla::Plugin::GatherDir' => '0',
-                                        'Dist::Zilla::Plugin::License' => '0',
-                                        'Dist::Zilla::Plugin::GitVersionCheckCJM' => '0.08',
-                                        'Dist::Zilla::Plugin::PodLoom' => '0.08',
-                                        'Moose' => '0.65',
-                                        'Dist::Zilla::Plugin::TestRelease' => '0',
-                                        'Dist::Zilla::Plugin::PodCoverageTests' => '0',
-                                        'Dist::Zilla::Plugin::ManifestSkip' => '0',
-                                        'Git' => '0',
-                                        'Dist::Zilla::Plugin::ExtraTests' => '0',
-                                        'Dist::Zilla::Plugin::Repository' => '0',
-                                        'Dist::Zilla::Plugin::TemplateCJM' => '0.08',
-                                        'Moose::Autobox' => '0.09',
-                                        'Dist::Zilla::Plugin::UploadToCPAN' => '0',
-                                        'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
-                                        'Dist::Zilla' => '2',
-                                        'Dist::Zilla::Plugin::MakeMaker' => '0',
-                                        'Dist::Zilla::Plugin::VersionFromModule' => '0.08',
-                                        'Dist::Zilla::Plugin::ArchiveRelease' => '0.08',
-                                        'Dist::Zilla::Plugin::PruneCruft' => '0',
-                                        'Dist::Zilla::PluginBundle::Git' => '1.100900'
-                                      },
-                       'LICENSE' => 'perl'
-                     );
+  'ABSTRACT' => 'Build a distribution like CJM',
+  'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
+  'BUILD_REQUIRES' => {},
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Dist-Zilla-PluginBundle-CJM',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Dist::Zilla::PluginBundle::CJM',
+  'PREREQ_PM' => {
+    'Dist::Zilla' => '2',
+    'Dist::Zilla::Plugin::ArchiveRelease' => '0.08',
+    'Dist::Zilla::Plugin::ExtraTests' => '0',
+    'Dist::Zilla::Plugin::GatherDir' => '0',
+    'Dist::Zilla::Plugin::GitVersionCheckCJM' => '0.08',
+    'Dist::Zilla::Plugin::License' => '0',
+    'Dist::Zilla::Plugin::MakeMaker' => '0',
+    'Dist::Zilla::Plugin::ManifestSkip' => '0',
+    'Dist::Zilla::Plugin::MatchManifest' => '0.03',
+    'Dist::Zilla::Plugin::MetaConfig' => '0',
+    'Dist::Zilla::Plugin::MetaJSON' => '0',
+    'Dist::Zilla::Plugin::MetaYAML' => '0',
+    'Dist::Zilla::Plugin::PodCoverageTests' => '0',
+    'Dist::Zilla::Plugin::PodLoom' => '0.08',
+    'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
+    'Dist::Zilla::Plugin::PruneCruft' => '0',
+    'Dist::Zilla::Plugin::Repository' => '0.15',
+    'Dist::Zilla::Plugin::TemplateCJM' => '0.08',
+    'Dist::Zilla::Plugin::TestRelease' => '0',
+    'Dist::Zilla::Plugin::UploadToCPAN' => '0',
+    'Dist::Zilla::Plugin::VersionFromModule' => '0.08',
+    'Dist::Zilla::PluginBundle::Git' => '1.100900',
+    'Dist::Zilla::Role::PluginBundle::Easy' => '0',
+    'Git' => '0',
+    'Moose' => '0.65',
+    'Moose::Autobox' => '0.09'
+  },
+  'VERSION' => '0.09',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
 
 
-delete $WriteMakefileArgs{BUILD_REQUIRES}
-  unless eval { ExtUtils::MakeMaker->VERSION(6.56) };
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
   unless eval { ExtUtils::MakeMaker->VERSION(6.52) };

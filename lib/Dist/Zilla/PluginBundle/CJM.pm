@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '0.08';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.08 (April 14, 2010)
+our $VERSION = '0.09';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.09 (November 5, 2010)
 
 use Moose;
 use Moose::Autobox;
@@ -39,6 +39,7 @@ sub configure
       GatherDir
       PruneCruft
       ManifestSkip
+      MetaJSON
       MetaYAML
       License
       PodSyntaxTests
@@ -61,7 +62,7 @@ sub configure
       GitVersionCheckCJM
       TemplateCJM
     ),
-    [ Repository => { git_remote => 'github' } ],
+    [ Repository => { git_remote => 'github', github_http => 0 } ],
   );
 
   $self->add_bundle(Git => {
@@ -91,9 +92,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 0.08 of
-Dist::Zilla::PluginBundle::CJM, released April 14, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.08.
+This document describes version 0.09 of
+Dist::Zilla::PluginBundle::CJM, released November 5, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.09.
 
 =head1 DESCRIPTION
 
@@ -104,6 +105,7 @@ This is the plugin bundle that CJM uses. It is equivalent to:
   [GatherDir]
   [PruneCruft]
   [ManifestSkip]
+  [MetaJSON]
   [MetaYAML]
   [License]
   [PodSyntaxTests]
@@ -118,7 +120,8 @@ This is the plugin bundle that CJM uses. It is equivalent to:
   [TemplateCJM]
 
   [Repository]
-  git_remote = github
+  git_remote  = github
+  github_http = 0
 
   [@Git]
   allow_dirty = Changes
@@ -162,7 +165,7 @@ or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-PluginBundle-CJM>
 
 You can follow or contribute to Dist-Zilla-PluginBundle-CJM's development at
-L<< http://github.com/madsen/dist-zilla-pluginbundle-cjm >>.
+git://github.com/madsen/dist-zilla-pluginbundle-cjm.git.
 
 =head1 COPYRIGHT AND LICENSE
 

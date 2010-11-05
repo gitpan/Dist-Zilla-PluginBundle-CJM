@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.08, released April 14, 2010
+Dist-Zilla-PluginBundle-CJM version 0.09, released November 5, 2010
 
 
 Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
@@ -38,12 +38,13 @@ DEPENDENCIES
   Dist::Zilla::Plugin::ManifestSkip         
   Dist::Zilla::Plugin::MatchManifest        0.03
   Dist::Zilla::Plugin::MetaConfig           
+  Dist::Zilla::Plugin::MetaJSON             
   Dist::Zilla::Plugin::MetaYAML             
   Dist::Zilla::Plugin::PodCoverageTests     
   Dist::Zilla::Plugin::PodLoom              0.08
   Dist::Zilla::Plugin::PodSyntaxTests       
   Dist::Zilla::Plugin::PruneCruft           
-  Dist::Zilla::Plugin::Repository           
+  Dist::Zilla::Plugin::Repository           0.15
   Dist::Zilla::Plugin::TemplateCJM          0.08
   Dist::Zilla::Plugin::TestRelease          
   Dist::Zilla::Plugin::UploadToCPAN         
@@ -57,22 +58,11 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.08 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.09 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	@CJM is now a working PluginBundle.
-	The plugins are now distributed separately from @CJM.
-
-	If you previously installed this bundle to get one of the
-	plugins, you should uninstall this bundle, and install
-	Dist-Zilla-Plugins-CJM instead.  Sorry for any confusion this
-	causes.
-
-	Dist::Zilla::Plugin::PodLoom
-	  - distributed in Dist-Zilla-Plugin-PodLoom
-
-	All other plugins and Role::ModuleInfo
-	  - distributed in Dist-Zilla-Plugins-CJM
+	- Add MetaJSON (while keeping MetaYAML for v1.4 support)
+	- Add github_http = 0 for Repository (Meta 2 has url & web)
 
 
 
