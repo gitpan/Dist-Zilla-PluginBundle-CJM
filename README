@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.09, released November 5, 2010
+Dist-Zilla-PluginBundle-CJM version 0.10, released November 11, 2010
 
 
 Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
@@ -32,11 +32,11 @@ DEPENDENCIES
   Dist::Zilla::Plugin::ArchiveRelease       0.08
   Dist::Zilla::Plugin::ExtraTests           
   Dist::Zilla::Plugin::GatherDir            
-  Dist::Zilla::Plugin::GitVersionCheckCJM   0.08
+  Dist::Zilla::Plugin::GitVersionCheckCJM   3.02
   Dist::Zilla::Plugin::License              
   Dist::Zilla::Plugin::MakeMaker            
   Dist::Zilla::Plugin::ManifestSkip         
-  Dist::Zilla::Plugin::MatchManifest        0.03
+  Dist::Zilla::Plugin::MatchManifest        0.04
   Dist::Zilla::Plugin::MetaConfig           
   Dist::Zilla::Plugin::MetaJSON             
   Dist::Zilla::Plugin::MetaYAML             
@@ -44,25 +44,27 @@ DEPENDENCIES
   Dist::Zilla::Plugin::PodLoom              0.08
   Dist::Zilla::Plugin::PodSyntaxTests       
   Dist::Zilla::Plugin::PruneCruft           
-  Dist::Zilla::Plugin::Repository           0.15
+  Dist::Zilla::Plugin::Repository           0.16
   Dist::Zilla::Plugin::TemplateCJM          0.08
   Dist::Zilla::Plugin::TestRelease          
   Dist::Zilla::Plugin::UploadToCPAN         
   Dist::Zilla::Plugin::VersionFromModule    0.08
   Dist::Zilla::PluginBundle::Git            1.100900
   Dist::Zilla::Role::PluginBundle::Easy     
-  Git                                       
+  Git::Wrapper                              
   Moose                                     0.65
   Moose::Autobox                            0.09
 
 
 
 CHANGES
-    Here's what's new in version 0.09 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 0.10 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Add MetaJSON (while keeping MetaYAML for v1.4 support)
-	- Add github_http = 0 for Repository (Meta 2 has url & web)
+	- Require GitVersionCheckCJM version 3.02 and Git::Wrapper.
+	  Don't require Git.pm anymore.
+	- Require Repository version 0.16 so github_http is unnecessary.
+	- Require MatchManifest version 0.04 (latest version).
 
 
 

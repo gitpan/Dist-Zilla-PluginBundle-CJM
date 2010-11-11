@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '0.09';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.09 (November 5, 2010)
+our $VERSION = '0.10';
+# This file is part of Dist-Zilla-PluginBundle-CJM 0.10 (November 11, 2010)
 
 use Moose;
 use Moose::Autobox;
@@ -62,7 +62,7 @@ sub configure
       GitVersionCheckCJM
       TemplateCJM
     ),
-    [ Repository => { git_remote => 'github', github_http => 0 } ],
+    [ Repository => { git_remote => 'github' } ],
   );
 
   $self->add_bundle(Git => {
@@ -92,9 +92,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 0.09 of
-Dist::Zilla::PluginBundle::CJM, released November 5, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.09.
+This document describes version 0.10 of
+Dist::Zilla::PluginBundle::CJM, released November 11, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 0.10.
 
 =head1 DESCRIPTION
 
@@ -121,7 +121,6 @@ This is the plugin bundle that CJM uses. It is equivalent to:
 
   [Repository]
   git_remote  = github
-  github_http = 0
 
   [@Git]
   allow_dirty = Changes
