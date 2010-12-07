@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '0.10';
-# This file is part of Dist-Zilla-PluginBundle-CJM 0.10 (November 11, 2010)
+our $VERSION = '4.00';
+# This file is part of Dist-Zilla-PluginBundle-CJM 4.00 (December 7, 2010)
 
 use Moose;
 use Moose::Autobox;
@@ -92,9 +92,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 0.10 of
-Dist::Zilla::PluginBundle::CJM, released November 11, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 0.10.
+This document describes version 4.00 of
+Dist::Zilla::PluginBundle::CJM, released December 7, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 4.00.
 
 =head1 DESCRIPTION
 
@@ -164,7 +164,7 @@ or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Dist-Zilla-PluginBundle-CJM>
 
 You can follow or contribute to Dist-Zilla-PluginBundle-CJM's development at
-git://github.com/madsen/dist-zilla-pluginbundle-cjm.git.
+L<< http://github.com/madsen/dist-zilla-pluginbundle-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 

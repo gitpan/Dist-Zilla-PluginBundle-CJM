@@ -21,7 +21,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Dist::Zilla" : "2",
+            "Dist::Zilla" : "4.101780",
             "Dist::Zilla::Plugin::ArchiveRelease" : "0.08",
             "Dist::Zilla::Plugin::ExtraTests" : 0,
             "Dist::Zilla::Plugin::GatherDir" : 0,
@@ -29,16 +29,16 @@
             "Dist::Zilla::Plugin::License" : 0,
             "Dist::Zilla::Plugin::MakeMaker" : 0,
             "Dist::Zilla::Plugin::ManifestSkip" : 0,
-            "Dist::Zilla::Plugin::MatchManifest" : "0.04",
+            "Dist::Zilla::Plugin::MatchManifest" : "4.00",
             "Dist::Zilla::Plugin::MetaConfig" : 0,
             "Dist::Zilla::Plugin::MetaJSON" : 0,
             "Dist::Zilla::Plugin::MetaYAML" : 0,
             "Dist::Zilla::Plugin::PodCoverageTests" : 0,
-            "Dist::Zilla::Plugin::PodLoom" : "0.08",
+            "Dist::Zilla::Plugin::PodLoom" : "3.01",
             "Dist::Zilla::Plugin::PodSyntaxTests" : 0,
             "Dist::Zilla::Plugin::PruneCruft" : 0,
             "Dist::Zilla::Plugin::Repository" : "0.16",
-            "Dist::Zilla::Plugin::TemplateCJM" : "0.08",
+            "Dist::Zilla::Plugin::TemplateCJM" : "3.03",
             "Dist::Zilla::Plugin::TestRelease" : 0,
             "Dist::Zilla::Plugin::UploadToCPAN" : 0,
             "Dist::Zilla::Plugin::VersionFromModule" : "0.08",
@@ -58,7 +58,7 @@
          "web" : "http://github.com/madsen/dist-zilla-pluginbundle-cjm"
       }
    },
-   "version" : "0.10",
+   "version" : "4.00",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -114,7 +114,7 @@
          {
             "class" : "Dist::Zilla::Plugin::PodLoom",
             "name" : "@CJM/PodLoom",
-            "version" : "3.00"
+            "version" : "3.01"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
@@ -129,7 +129,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MatchManifest",
             "name" : "@CJM/MatchManifest",
-            "version" : "0.04"
+            "version" : "4.00"
          },
          {
             "class" : "Dist::Zilla::Plugin::GitVersionCheckCJM",
@@ -139,7 +139,7 @@
          {
             "class" : "Dist::Zilla::Plugin::TemplateCJM",
             "name" : "@CJM/TemplateCJM",
-            "version" : "3.00"
+            "version" : "3.03"
          },
          {
             "class" : "Dist::Zilla::Plugin::Repository",

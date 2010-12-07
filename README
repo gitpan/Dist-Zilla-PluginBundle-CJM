@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 0.10, released November 11, 2010
+Dist-Zilla-PluginBundle-CJM version 4.00, released December 7, 2010
 
 
 Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
@@ -28,7 +28,7 @@ DEPENDENCIES
 
   Package                                  Minimum Version
   ---------------------------------------- ---------------
-  Dist::Zilla                               2
+  Dist::Zilla                               4.101780
   Dist::Zilla::Plugin::ArchiveRelease       0.08
   Dist::Zilla::Plugin::ExtraTests           
   Dist::Zilla::Plugin::GatherDir            
@@ -36,16 +36,16 @@ DEPENDENCIES
   Dist::Zilla::Plugin::License              
   Dist::Zilla::Plugin::MakeMaker            
   Dist::Zilla::Plugin::ManifestSkip         
-  Dist::Zilla::Plugin::MatchManifest        0.04
+  Dist::Zilla::Plugin::MatchManifest        4.00
   Dist::Zilla::Plugin::MetaConfig           
   Dist::Zilla::Plugin::MetaJSON             
   Dist::Zilla::Plugin::MetaYAML             
   Dist::Zilla::Plugin::PodCoverageTests     
-  Dist::Zilla::Plugin::PodLoom              0.08
+  Dist::Zilla::Plugin::PodLoom              3.01
   Dist::Zilla::Plugin::PodSyntaxTests       
   Dist::Zilla::Plugin::PruneCruft           
   Dist::Zilla::Plugin::Repository           0.16
-  Dist::Zilla::Plugin::TemplateCJM          0.08
+  Dist::Zilla::Plugin::TemplateCJM          3.03
   Dist::Zilla::Plugin::TestRelease          
   Dist::Zilla::Plugin::UploadToCPAN         
   Dist::Zilla::Plugin::VersionFromModule    0.08
@@ -58,13 +58,13 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 0.10 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 4.00 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Require GitVersionCheckCJM version 3.02 and Git::Wrapper.
-	  Don't require Git.pm anymore.
-	- Require Repository version 0.16 so github_http is unnecessary.
-	- Require MatchManifest version 0.04 (latest version).
+	- Require PodLoom version 3.01 (prefer web URL for repository).
+	- Require MatchManifest version 4.00 (works on Windows).
+	- Require TemplateCJM version 3.03 (more selective processing).
+	- Change major version to 4, because Dist::Zilla 4 is required.
 
 
 
