@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '4.00';
-# This file is part of Dist-Zilla-PluginBundle-CJM 4.00 (December 7, 2010)
+our $VERSION = '4.01';
+# This file is part of Dist-Zilla-PluginBundle-CJM 4.01 (December 20, 2010)
 
 use Moose;
 use Moose::Autobox;
@@ -67,9 +67,9 @@ sub configure
 
   $self->add_bundle(Git => {
     allow_dirty => 'Changes',
-    commit_msg  => 'Updated Changes for %{MMMM d, yyyy}d release of %v',
-    tag_format  => '%v',
-    tag_message => 'Tagged %N %v',
+    commit_msg  => 'Updated Changes for %{MMMM d, yyyy}d%{ trial}t release of %v',
+    tag_format  => '%v%t',
+    tag_message => 'Tagged %N %v%{ (trial release)}t',
     push_to     => 'github',
   });
 
@@ -92,9 +92,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 4.00 of
-Dist::Zilla::PluginBundle::CJM, released December 7, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 4.00.
+This document describes version 4.01 of
+Dist::Zilla::PluginBundle::CJM, released December 20, 2010
+as part of Dist-Zilla-PluginBundle-CJM version 4.01.
 
 =head1 DESCRIPTION
 
@@ -124,9 +124,9 @@ This is the plugin bundle that CJM uses. It is equivalent to:
 
   [@Git]
   allow_dirty = Changes
-  commit_msg  = Updated Changes for %{MMMM d, yyyy}d release of %v
-  tag_format  = %v
-  tag_message = Tagged %N %v
+  commit_msg  = Updated Changes for %{MMMM d, yyyy}d%{ trial}t release of %v
+  tag_format  = %v%t
+  tag_message = Tagged %N %v%{ (trial release)}t
   push_to     = github
 
   [TestRelease]

@@ -37,17 +37,17 @@ my %WriteMakefileArgs = (
     'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
     'Dist::Zilla::Plugin::PruneCruft' => '0',
     'Dist::Zilla::Plugin::Repository' => '0.16',
-    'Dist::Zilla::Plugin::TemplateCJM' => '3.03',
+    'Dist::Zilla::Plugin::TemplateCJM' => '3.04',
     'Dist::Zilla::Plugin::TestRelease' => '0',
     'Dist::Zilla::Plugin::UploadToCPAN' => '0',
     'Dist::Zilla::Plugin::VersionFromModule' => '0.08',
-    'Dist::Zilla::PluginBundle::Git' => '1.100900',
+    'Dist::Zilla::PluginBundle::Git' => '1.103520',
     'Dist::Zilla::Role::PluginBundle::Easy' => '0',
     'Git::Wrapper' => '0',
     'Moose' => '0.65',
     'Moose::Autobox' => '0.09'
   },
-  'VERSION' => '4.00',
+  'VERSION' => '4.01',
   'test' => {
     'TESTS' => 't/*.t'
   }

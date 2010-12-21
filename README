@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 4.00, released December 7, 2010
+Dist-Zilla-PluginBundle-CJM version 4.01, released December 20, 2010
 
 
 Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
@@ -45,11 +45,11 @@ DEPENDENCIES
   Dist::Zilla::Plugin::PodSyntaxTests       
   Dist::Zilla::Plugin::PruneCruft           
   Dist::Zilla::Plugin::Repository           0.16
-  Dist::Zilla::Plugin::TemplateCJM          3.03
+  Dist::Zilla::Plugin::TemplateCJM          3.04
   Dist::Zilla::Plugin::TestRelease          
   Dist::Zilla::Plugin::UploadToCPAN         
   Dist::Zilla::Plugin::VersionFromModule    0.08
-  Dist::Zilla::PluginBundle::Git            1.100900
+  Dist::Zilla::PluginBundle::Git            1.103520
   Dist::Zilla::Role::PluginBundle::Easy     
   Git::Wrapper                              
   Moose                                     0.65
@@ -58,13 +58,12 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.00 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 4.01 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Require PodLoom version 3.01 (prefer web URL for repository).
-	- Require MatchManifest version 4.00 (works on Windows).
-	- Require TemplateCJM version 3.03 (more selective processing).
-	- Change major version to 4, because Dist::Zilla 4 is required.
+	- Use %t to indicate a trial release
+	- Require @Git version 1.103520 (supports %t in Tag & Commit)
+	- Require TemplateCJM version 3.04 (latest version)
 
 
 
