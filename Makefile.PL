@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -13,14 +13,14 @@ my %WriteMakefileArgs = (
   'AUTHOR' => 'Christopher J. Madsen <perl@cjmweb.net>',
   'BUILD_REQUIRES' => {},
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Dist-Zilla-PluginBundle-CJM',
   'EXE_FILES' => [],
   'LICENSE' => 'perl',
   'NAME' => 'Dist::Zilla::PluginBundle::CJM',
   'PREREQ_PM' => {
-    'Dist::Zilla' => '4.101780',
+    'Dist::Zilla' => '4.200001',
     'Dist::Zilla::Plugin::ArchiveRelease' => '0.08',
     'Dist::Zilla::Plugin::ExtraTests' => '0',
     'Dist::Zilla::Plugin::GatherDir' => '0',
@@ -33,11 +33,11 @@ my %WriteMakefileArgs = (
     'Dist::Zilla::Plugin::MetaJSON' => '0',
     'Dist::Zilla::Plugin::MetaYAML' => '0',
     'Dist::Zilla::Plugin::PodCoverageTests' => '0',
-    'Dist::Zilla::Plugin::PodLoom' => '3.01',
+    'Dist::Zilla::Plugin::PodLoom' => '4.00',
     'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
     'Dist::Zilla::Plugin::PruneCruft' => '0',
     'Dist::Zilla::Plugin::Repository' => '0.16',
-    'Dist::Zilla::Plugin::TemplateCJM' => '3.04',
+    'Dist::Zilla::Plugin::TemplateCJM' => '3.05',
     'Dist::Zilla::Plugin::TestRelease' => '0',
     'Dist::Zilla::Plugin::UploadToCPAN' => '0',
     'Dist::Zilla::Plugin::VersionFromModule' => '0.08',
@@ -47,7 +47,7 @@ my %WriteMakefileArgs = (
     'Moose' => '0.65',
     'Moose::Autobox' => '0.09'
   },
-  'VERSION' => '4.01',
+  'VERSION' => '4.02',
   'test' => {
     'TESTS' => 't/*.t'
   }

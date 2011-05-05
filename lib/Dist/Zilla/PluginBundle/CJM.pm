@@ -17,8 +17,8 @@ package Dist::Zilla::PluginBundle::CJM;
 # ABSTRACT: Build a distribution like CJM
 #---------------------------------------------------------------------
 
-our $VERSION = '4.01';
-# This file is part of Dist-Zilla-PluginBundle-CJM 4.01 (December 20, 2010)
+our $VERSION = '4.02';
+# This file is part of Dist-Zilla-PluginBundle-CJM 4.02 (May 5, 2011)
 
 use Moose;
 use Moose::Autobox;
@@ -70,7 +70,7 @@ sub configure
     commit_msg  => 'Updated Changes for %{MMMM d, yyyy}d%{ trial}t release of %v',
     tag_format  => '%v%t',
     tag_message => 'Tagged %N %v%{ (trial release)}t',
-    push_to     => 'github',
+    push_to     => 'github master',
   });
 
   $self->add_plugins(
@@ -92,9 +92,9 @@ Dist::Zilla::PluginBundle::CJM - Build a distribution like CJM
 
 =head1 VERSION
 
-This document describes version 4.01 of
-Dist::Zilla::PluginBundle::CJM, released December 20, 2010
-as part of Dist-Zilla-PluginBundle-CJM version 4.01.
+This document describes version 4.02 of
+Dist::Zilla::PluginBundle::CJM, released May 5, 2011
+as part of Dist-Zilla-PluginBundle-CJM version 4.02.
 
 =head1 DESCRIPTION
 
@@ -127,7 +127,7 @@ This is the plugin bundle that CJM uses. It is equivalent to:
   commit_msg  = Updated Changes for %{MMMM d, yyyy}d%{ trial}t release of %v
   tag_format  = %v%t
   tag_message = Tagged %N %v%{ (trial release)}t
-  push_to     = github
+  push_to     = github master
 
   [TestRelease]
   [UploadToCPAN]
@@ -168,7 +168,7 @@ L<< http://github.com/madsen/dist-zilla-pluginbundle-cjm >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -1,4 +1,4 @@
-Dist-Zilla-PluginBundle-CJM version 4.01, released December 20, 2010
+Dist-Zilla-PluginBundle-CJM version 4.02, released May 5, 2011
 
 
 Dist::Zilla::PluginBundle::CJM is the basic configuration I use when
@@ -28,7 +28,7 @@ DEPENDENCIES
 
   Package                                  Minimum Version
   ---------------------------------------- ---------------
-  Dist::Zilla                               4.101780
+  Dist::Zilla                               4.200001
   Dist::Zilla::Plugin::ArchiveRelease       0.08
   Dist::Zilla::Plugin::ExtraTests           
   Dist::Zilla::Plugin::GatherDir            
@@ -41,11 +41,11 @@ DEPENDENCIES
   Dist::Zilla::Plugin::MetaJSON             
   Dist::Zilla::Plugin::MetaYAML             
   Dist::Zilla::Plugin::PodCoverageTests     
-  Dist::Zilla::Plugin::PodLoom              3.01
+  Dist::Zilla::Plugin::PodLoom              4.00
   Dist::Zilla::Plugin::PodSyntaxTests       
   Dist::Zilla::Plugin::PruneCruft           
   Dist::Zilla::Plugin::Repository           0.16
-  Dist::Zilla::Plugin::TemplateCJM          3.04
+  Dist::Zilla::Plugin::TemplateCJM          3.05
   Dist::Zilla::Plugin::TestRelease          
   Dist::Zilla::Plugin::UploadToCPAN         
   Dist::Zilla::Plugin::VersionFromModule    0.08
@@ -58,18 +58,18 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 4.01 of Dist-Zilla-PluginBundle-CJM:
+    Here's what's new in version 4.02 of Dist-Zilla-PluginBundle-CJM:
     (See the file "Changes" for the full revision history.)
 
-	- Use %t to indicate a trial release
-	- Require @Git version 1.103520 (supports %t in Tag & Commit)
-	- Require TemplateCJM version 3.04 (latest version)
+	- Specify master branch in push_to, so it can push to a new repository
+	- Require PodLoom version 4.00 (compatible with current dzil).
+	- Require TemplateCJM version 3.05 (latest version)
 
 
 
 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Christopher J. Madsen.
+This software is copyright (c) 2011 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
